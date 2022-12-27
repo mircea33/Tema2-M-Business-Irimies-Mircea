@@ -1,0 +1,28 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Test.Views.EditJournalEntry">
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <Color x:Key="InputTextColor">Black</Color>
+        </ResourceDictionary>
+    </ContentPage.Resources>
+    <Grid  >
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*" />
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*" />
+        </Grid.ColumnDefinitions>
+        <Label Text="What's on your mind"/>
+        <StackLayout Orientation="Vertical" Grid.Row="1" Padding="1">
+            <Entry x:Name="TitleEntry1" Placeholder="A title for today" Text="{Binding Title}"/>
+            <Editor x:Name="WritingsEditor1" Text="{Binding Writings}" VerticalOptions="FillAndExpand" TextColor="{DynamicResource InputTextColor}"/>
+        </StackLayout>
+        <StackLayout Orientation="Vertical" Grid.Row="2">
+            <Button Text="Save" x:Name="SaveButton1" HorizontalOptions="FillAndExpand" Clicked="Save_Clicked1"/>
+        </StackLayout>
+    </Grid>
+</ContentPage>

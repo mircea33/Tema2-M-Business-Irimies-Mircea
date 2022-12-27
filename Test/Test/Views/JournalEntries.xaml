@@ -1,0 +1,47 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Test.Views.JournalEntries"
+             NavigationPage.HasBackButton="False"
+             Title="Journal Entries">
+    <ContentPage.Padding>
+        <OnPlatform x:TypeArguments="Thickness">
+            <On Platform="Android">10,0,10,5</On>
+ </OnPlatform>
+</ContentPage.Padding>
+    <ContentPage.ToolbarItems>
+        <ToolbarItem  Text="ADD ENTRY" Clicked="gotojournaling"/>
+    </ContentPage.ToolbarItems>
+    <ContentPage.Content>
+        <StackLayout>
+            <SearchBar Placeholder="Search ..."  FontSize="20" TextChanged="SearchBar_TextChanged"/>
+            <ListView x:Name="JournalEntriesList" HasUnevenRows="True" ItemTapped="ItemTapped" RowHeight="100" IsPullToRefreshEnabled="True" Refreshing ="End_refreshing">
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <ViewCell>
+                            <ViewCell.ContextActions>
+                                <MenuItem Text="Edit Entry" Clicked="EditClicked" 
+CommandParameter="{Binding .}"/>
+                                <MenuItem Text="Delete" Clicked="DeleteClicked"
+CommandParameter="{Binding .}" IsDestructive="True" />
+                            </ViewCell.ContextActions>
+                            <StackLayout HorizontalOptions="StartAndExpand"
+Orientation="Horizontal" Padding="5,10,5,15">
+                                <StackLayout HorizontalOptions="Start"
+Orientation="Vertical">
+                                    <Label HorizontalOptions="Start" FontSize="20"
+FontAttributes="Bold" TextColor="Black"
+Text="{Binding Title}"/>
+                                    <Label HorizontalOptions="Start" FontSize="12"
+FontAttributes="Bold" TextColor="Black"
+Text="{Binding CreateAt}"/>
+                                </StackLayout>
+                            </StackLayout>
+                        </ViewCell>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
+            <Button Text="Push notification" Clicked="sendNotification" />
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>
